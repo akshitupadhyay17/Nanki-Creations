@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NANKI CREATIONS - Handcrafted with Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #FFC0CB;
+            --pastel-blue: #ADD8E6;
+            --light-pink: #FFE4E1;
+            --dark-pink: #FF69B4;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto; /* ✅ Center content */
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between; /* ✅ logo left, nav right */
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-pink);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--primary-pink);
+        }
+
+        .logo-image {
+            width: 75px;
+            height: auto;
+        }
+
+        .logo-image img {
+            width: 100%;
+            height: auto;
+            object-fit:contain;
+            padding-top: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--dark-pink);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dark-pink);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-pink);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--pastel-blue) 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="floral" patternUnits="userSpaceOnUse" width="50" height="50"><circle cx="25" cy="25" r="3" fill="rgba(255,255,255,0.1)"/><path d="M20 20 Q25 15 30 20 Q25 25 20 20" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23floral)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--white);
+            color: var(--dark-pink);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--dark-pink);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary-pink);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(45deg, var(--primary-pink), var(--pastel-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="30" r="10" fill="rgba(255,255,255,0.05)"/><circle cx="70" cy="70" r="15" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-info p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-pink);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary-pink), var(--pastel-blue));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20 20 Q50 10 80 20 Q90 50 80 80 Q50 90 20 80 Q10 50 20 20" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--primary-pink), var(--dark-pink));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer p {
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Page-specific styles */
+        .page-content {
+            padding-top: 100px;
+            min-height: calc(100vh - 70px);
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--pastel-blue) 100%);
+            padding: 100px 0 60px;
+            text-align: center;
+            color: var(--white);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--dark-pink);
+            margin-bottom: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">
+                <div class="logo-image">
+                    <img src="Nanki Creations Logo.png">
+                </div>
+                NANKI CREATIONS
+            </a>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('products')">Products</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>NANKI CREATIONS</h1>
+                <p>Handcrafted with Love, Designed with Passion</p>
+                <a href="#" class="cta-button" onclick="showPage('products')">Explore Collection</a>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="section">
+            <h2>Featured Collections</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Handmade Jewelry</h3>
+                        <p>Elegant pieces crafted with precision and care</p>
+                        <div class="product-price">Starting from ₹299</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Embroidered Textiles</h3>
+                        <p>Beautiful fabrics with intricate embroidery work</p>
+                        <div class="product-price">Starting from ₹599</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Custom Gifts</h3>
+                        <p>Personalized handicrafts for special occasions</p>
+                        <div class="product-price">Starting from ₹199</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page hidden">
+        <div class="page-hero">
+            <h1>About NANKI CREATIONS</h1>
+            <p>Discover the story behind our handcrafted treasures</p>
+        </div>
+        <section class="section">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 style="color: var(--dark-pink); margin-bottom: 20px; font-size: 1.5rem;">Our Story</h3>
+                    <p>NANKI CREATIONS was born from a passion for preserving traditional handicrafts while bringing a modern touch to timeless designs. Founded by Nanki, a skilled artisan with over a decade of experience, our brand represents the perfect blend of heritage and contemporary aesthetics.</p>
+                    
+                    <p>Every piece we create tells a story of dedication, creativity, and love for the craft. From intricate embroidery to delicate jewelry, each item is meticulously handcrafted using traditional techniques passed down through generations.</p>
+                    
+                    <p>Our mission is to celebrate the beauty of handmade artistry while providing sustainable livelihoods to local artisans. We believe that in a world of mass production, there's something truly special about owning a piece that has been lovingly crafted by hand.</p>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Products Page -->
+    <div id="products" class="page hidden">
+        <div class="page-hero">
+            <h1>Our Products</h1>
+            <p>Explore our collection of handcrafted treasures</p>
+        </div>
+        <section class="section">
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Beaded Necklace Set</h3>
+                        <p>Elegant beaded necklace with matching earrings, perfect for special occasions</p>
+                        <div class="product-price">₹899</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Embroidered Kurta</h3>
+                        <p>Traditional kurta with beautiful hand-embroidered floral patterns</p>
+                        <div class="product-price">₹1,299</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Handwoven Tote Bag</h3>
+                        <p>Eco-friendly tote bag with colorful handwoven patterns</p>
+                        <div class="product-price">₹599</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Silver Wire Bracelet</h3>
+                        <p>Delicate silver wire bracelet with charm details</p>
+                        <div class="product-price">₹449</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Decorative Wall Hanging</h3>
+                        <p>Handcrafted wall hanging with macramé and bead details</p>
+                        <div class="product-price">₹799</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-hat-cowboy"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Crocheted Hat</h3>
+                        <p>Stylish crocheted hat perfect for any season</p>
+                        <div class="product-price">₹349</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Dream Catcher</h3>
+                        <p>Beautiful dream catcher with feathers and beads</p>
+                        <div class="product-price">₹299</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Custom Gift Box</h3>
+                        <p>Personalized gift box with handcrafted items of your choice</p>
+                        <div class="product-price">₹999</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Decorative Candles</h3>
+                        <p>Hand-poured scented candles with decorative holders</p>
+                        <div class="product-price">₹399</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page hidden">
+        <div class="page-hero">
+            <h1>Contact Us</h1>
+            <p>Get in touch with us for custom orders and inquiries</p>
+        </div>
+        <section class="section">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>nankicreations@gmail.com</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+91 81780 60368</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Delhi, India</p>
+                </div>
+            </div>
+
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your requirements or any questions you have..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 NANKI CREATIONS. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Find and activate the correct nav link
+            const activeLink = document.querySelector(`.nav-links a[onclick="showPage('${pageId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Contact Form Submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Smooth scrolling for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll effect to navbar
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
+            });
+
+            // Add fade-in animation to elements
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe product cards and other elements
+            const cards = document.querySelectorAll('.product-card, .contact-card, .about-content');
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Add hover effects to buttons
+            const buttons = document.querySelectorAll('.cta-button, .submit-btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add click effects to product cards
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Add a subtle click animation
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Add typing effect to hero text
+            const heroTitle = document.querySelector('.hero h1');
+            const heroText = document.querySelector('.hero p');
+            
+            // Initialize with opacity 0 for smooth fade-in
+            if (heroTitle && heroText) {
+                heroTitle.style.opacity = '0';
+                heroText.style.opacity = '0';
+                
+                setTimeout(() => {
+                    heroTitle.style.opacity = '1';
+                    heroTitle.style.animation = 'fadeInUp 1s ease-out';
+                }, 200);
+                
+                setTimeout(() => {
+                    heroText.style.opacity = '1';
+                    heroText.style.animation = 'fadeInUp 1s ease-out';
+                }, 600);
+            }
+
+            // Add floating animation to hero icons
+            const heroIcons = document.querySelectorAll('.product-image i');
+            heroIcons.forEach((icon, index) => {
+                icon.style.animation = `float 3s ease-in-out infinite ${index * 0.5}s`;
+            });
+
+            // Add CSS for floating animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float {
+                    0%, 100% {
+                        transform: translateY(0px);
+                    }
+                    50% {
+                        transform: translateY(-10px);
+                    }
+                }
+                
+                .product-card {
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                
+                .product-card:hover {
+                    transform: translateY(-10px) scale(1.02);
+                }
+                
+                .hero-content > * {
+                    opacity: 0;
+                    animation: fadeInUp 1s ease-out forwards;
+                }
+                
+                .hero-content h1 {
+                    animation-delay: 0.2s;
+                }
+                
+                .hero-content p {
+                    animation-delay: 0.6s;
+                }
+                
+                .hero-content .cta-button {
+                    animation-delay: 1s;
+                }
+                
+                /* Enhanced mobile responsiveness */
+                @media (max-width: 768px) {
+                    .nav-links {
+                        position: absolute;
+                        top: 70px;
+                        left: 0;
+                        width: 100%;
+                        background: rgba(255, 255, 255, 0.98);
+                        flex-direction: column;
+                        padding: 20px;
+                        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                        backdrop-filter: blur(10px);
+                    }
+                    
+                    .contact-info {
+                        grid-template-columns: 1fr;
+                    }
+                    
+                    .hero {
+                        padding: 0 20px;
+                    }
+                    
+                    .section {
+                        padding: 40px 15px;
+                    }
+                    
+                    .logo {
+                        font-size: 1.4rem;
+                    }
+                    
+                    .logo-image {
+                        width: 35px;
+                        height: 35px;
+                        font-size: 1rem;
+                    }
+                }
+                
+                /* Custom scrollbar */
+                ::-webkit-scrollbar {
+                    width: 8px;
+                }
+                
+                ::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                }
+                
+                ::-webkit-scrollbar-thumb {
+                    background: var(--primary-pink);
+                    border-radius: 4px;
+                }
+                
+                ::-webkit-scrollbar-thumb:hover {
+                    background: var(--dark-pink);
+                }
+                
+                /* Loading animation for page transitions */
+                .page {
+                    opacity: 1;
+                    transition: opacity 0.3s ease-in-out;
+                }
+                
+                .page.hidden {
+                    opacity: 0;
+                    pointer-events: none;
+                }
+                
+                /* Enhanced button hover effects */
+                .cta-button, .submit-btn {
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                .cta-button::before, .submit-btn::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                    transition: left 0.6s;
+                }
+                
+                .cta-button:hover::before, .submit-btn:hover::before {
+                    left: 100%;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add smooth page transitions
+            window.showPage = function(pageId) {
+                // Hide all pages
+                const pages = document.querySelectorAll('.page');
+                pages.forEach(page => page.classList.add('hidden'));
+                
+                // Show selected page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                    targetPage.style.opacity = '1';
+                }
+                
+                // Update active nav link
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Find and activate the correct nav link
+                const activeLink = document.querySelector(`.nav-links a[onclick="showPage('${pageId}')"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // Add form validation enhancement
+            const formInputs = document.querySelectorAll('input, textarea');
+            formInputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() !== '') {
+                        this.style.borderColor = 'var(--pastel-blue)';
+                        this.style.backgroundColor = '#f8f9ff';
+                    } else {
+                        this.style.borderColor = '#e0e0e0';
+                        this.style.backgroundColor = 'white';
+                    }
+                });
+                
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--primary-pink)';
+                    this.style.boxShadow = '0 0 0 3px rgba(255, 192, 203, 0.1)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.boxShadow = 'none';
+                });
+            });
+
+            // Add success message for contact form
+            const originalHandleSubmit = window.handleSubmit;
+            window.handleSubmit = function(event) {
+                event.preventDefault();
+                
+                const formData = new FormData(event.target);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
+                
+                if (!name || !email || !message) {
+                    showNotification('Please fill in all fields.', 'error');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showNotification('Please enter a valid email address.', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = event.target.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    showNotification('Thank you for your message! We will get back to you soon.', 'success');
+                    event.target.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            };
+
+            // Notification system
+            window.showNotification = function(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.textContent = message;
+                
+                const notificationStyle = `
+                    position: fixed;
+                    top: 90px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    border-radius: 8px;
+                    color: white;
+                    font-weight: 500;
+                    z-index: 10000;
+                    transform: translateX(100%);
+                    transition: transform 0.3s ease;
+                    max-width: 300px;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+                `;
+                
+                notification.style.cssText = notificationStyle;
+                notification.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            };
+        });
+    </script>
+</body>
+</html>
