@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,13 +13,13 @@
         }
 
         :root {
-            --primary-pink: #FFC0CB;
-            --pastel-blue: #ADD8E6;
-            --light-pink: #FFE4E1;
-            --dark-pink: #FF69B4;
-            --text-dark: #333;
+            --primary-pink: #e396a9;
+            --pastel-blue: #9fc9e3;
+            --light-pink: #f7c3ce; /* slightly darker */
+            --dark-pink: #d45583;
+            --text-dark: #222;
             --text-light: #666;
-            --white: #FFFFFF;
+            --white: #f9f9f9; /* off-white for softer contrast */
         }
 
         body {
@@ -45,10 +44,10 @@
 
         .nav-container {
             max-width: 1200px;
-            margin: 0 auto; /* ✅ Center content */
+            margin: 0 auto;
             padding: 0 20px;
             display: flex;
-            justify-content: space-between; /* ✅ logo left, nav right */
+            justify-content: space-between;
             align-items: center;
             height: 70px;
         }
@@ -70,15 +69,9 @@
         }
 
         .logo-image {
-            width: 75px;
-            height: auto;
-        }
-
-        .logo-image img {
-            width: 100%;
-            height: auto;
-            object-fit:contain;
-            padding-top: 10px;
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -166,7 +159,7 @@
             font-weight: 700;
             color: var(--white);
             margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             animation: fadeInUp 1s ease-out;
         }
 
@@ -176,7 +169,6 @@
             margin-bottom: 30px;
             opacity: 0.9;
             animation: fadeInUp 1s ease-out 0.3s both;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
         }
 
         .cta-button {
@@ -213,6 +205,7 @@
             color: var(--dark-pink);
             margin-bottom: 50px;
             position: relative;
+            
         }
 
         .section h2::after {
@@ -395,7 +388,54 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Footer */
+        /* Sort and Filter Controls */
+        .filter-sort-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--primary-pink);
+            background: transparent;
+            color: var(--dark-pink);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .sort-dropdown {
+            padding: 10px 15px;
+            border: 2px solid var(--primary-pink);
+            border-radius: 25px;
+            background: white;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .sort-dropdown:focus {
+            border-color: var(--dark-pink);
+        }
         .footer {
             background: var(--text-dark);
             color: var(--white);
@@ -492,13 +532,21 @@
             padding: 100px 0 60px;
             text-align: center;
             color: var(--white);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
         }
 
         .page-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             margin-bottom: 20px;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-hero p {
+            color: var(--white);
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .contact-info {
@@ -532,10 +580,8 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo" onclick="showPage('home')">
-                <div class="logo-image">
-                    <img src="Nanki Creations Logo.png">
-                </div>
-                NANKI CREATIONS
+                <img src="Nanki Creations Logo.png" alt="NANAKI Creations Logo" class="logo-image">
+                NANAKI CREATIONS
             </a>
             <ul class="nav-links">
                 <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
@@ -556,7 +602,7 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h1>NANKI CREATIONS</h1>
+                <h1>NANAKI CREATIONS</h1>
                 <p>Handcrafted with Love, Designed with Passion</p>
                 <a href="#" class="cta-button" onclick="showPage('products')">Explore Collection</a>
             </div>
@@ -568,32 +614,62 @@
             <div class="product-grid">
                 <div class="product-card">
                     <div class="product-image">
-                        <i class="fas fa-palette"></i>
+                        <i class="fas fa-bed"></i>
                     </div>
                     <div class="product-info">
-                        <h3>Handmade Jewelry</h3>
-                        <p>Elegant pieces crafted with precision and care</p>
+                        <h3>Quilts</h3>
+                        <p>Beautiful handcrafted quilts with intricate patterns and designs</p>
+                        <div class="product-price">Starting from ₹1,299</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cushion & Pillow Covers</h3>
+                        <p>Elegant covers with beautiful embroidery and fabric work</p>
                         <div class="product-price">Starting from ₹299</div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <i class="fas fa-cut"></i>
+                        <i class="fas fa-shopping-bag"></i>
                     </div>
                     <div class="product-info">
-                        <h3>Embroidered Textiles</h3>
-                        <p>Beautiful fabrics with intricate embroidery work</p>
+                        <h3>Pouches</h3>
+                        <p>Stylish and functional pouches for everyday use</p>
+                        <div class="product-price">Starting from ₹199</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Table Runners</h3>
+                        <p>Decorative table runners to enhance your dining experience</p>
                         <div class="product-price">Starting from ₹599</div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <i class="fas fa-gift"></i>
+                        <i class="fas fa-flag"></i>
                     </div>
                     <div class="product-info">
-                        <h3>Custom Gifts</h3>
-                        <p>Personalized handicrafts for special occasions</p>
-                        <div class="product-price">Starting from ₹199</div>
+                        <h3>Buntings</h3>
+                        <p>Colorful buntings perfect for celebrations and decorations</p>
+                        <div class="product-price">Starting from ₹149</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Tote Bags</h3>
+                        <p>Durable, stylish tote bags perfect for daily use</p>
+                        <div class="product-price">Starting from ₹499</div>
                     </div>
                 </div>
             </div>
@@ -603,16 +679,16 @@
     <!-- About Page -->
     <div id="about" class="page hidden">
         <div class="page-hero">
-            <h1>About NANKI CREATIONS</h1>
+            <h1>ABOUT NANAKI CREATIONS</h1>
             <p>Discover the story behind our handcrafted treasures</p>
         </div>
         <section class="section">
             <div class="about-content">
                 <div class="about-text">
                     <h3 style="color: var(--dark-pink); margin-bottom: 20px; font-size: 1.5rem;">Our Story</h3>
-                    <p>NANKI CREATIONS was born from a passion for preserving traditional handicrafts while bringing a modern touch to timeless designs. Founded by Nanki, a skilled artisan with over a decade of experience, our brand represents the perfect blend of heritage and contemporary aesthetics.</p>
+                    <p>NANAKI CREATIONS was born from a passion for preserving traditional handicrafts while bringing a modern touch to timeless designs. Founded by Nanaki, a skilled artisan with over a decade of experience, our brand represents the perfect blend of heritage and contemporary aesthetics.</p>
                     
-                    <p>Every piece we create tells a story of dedication, creativity, and love for the craft. From intricate embroidery to delicate jewelry, each item is meticulously handcrafted using traditional techniques passed down through generations.</p>
+                    <p>We specialize in creating beautiful home décor items including quilts, cushion covers, pouches, table runners, and festive buntings. Every piece we create tells a story of dedication, creativity, and love for the craft. From intricate quilting patterns to delicate embroidery work, each item is meticulously handcrafted using traditional techniques passed down through generations.</p>
                     
                     <p>Our mission is to celebrate the beauty of handmade artistry while providing sustainable livelihoods to local artisans. We believe that in a world of mass production, there's something truly special about owning a piece that has been lovingly crafted by hand.</p>
                 </div>
@@ -630,95 +706,213 @@
             <p>Explore our collection of handcrafted treasures</p>
         </div>
         <section class="section">
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Beaded Necklace Set</h3>
-                        <p>Elegant beaded necklace with matching earrings, perfect for special occasions</p>
-                        <div class="product-price">₹899</div>
-                    </div>
+            <div class="filter-sort-controls">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterProducts('all', event)">All Products</button>
+                    <button class="filter-btn" onclick="filterProducts('quilts', event)">Quilts</button>
+                    <button class="filter-btn" onclick="filterProducts('cushions', event)">Cushions & Pillows</button>
+                    <button class="filter-btn" onclick="filterProducts('pouches', event)">Pouches</button>
+                    <button class="filter-btn" onclick="filterProducts('table-runners', event)">Table Runners</button>
+                    <button class="filter-btn" onclick="filterProducts('buntings', event)">Buntings</button>
+                    <button class="filter-btn" onclick="filterProducts('tote-bags', event)">Tote Bags</button>
                 </div>
-                <div class="product-card">
+                <select class="sort-dropdown" onchange="sortProducts(this.value)">
+                    <option value="name">Sort by Name</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="product-grid" id="product-grid">
+                <!-- Quilts -->
+                <div class="product-card" data-category="quilts" data-price="1299" data-name="Handmade Quilt - Floral">
                     <div class="product-image">
-                        <i class="fas fa-tshirt"></i>
+                        <i class="fas fa-bed"></i>
                     </div>
                     <div class="product-info">
-                        <h3>Embroidered Kurta</h3>
-                        <p>Traditional kurta with beautiful hand-embroidered floral patterns</p>
+                        <h3>Handmade Quilt - Floral</h3>
+                        <p>Beautiful handcrafted quilt with intricate floral patterns</p>
                         <div class="product-price">₹1,299</div>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-category="quilts" data-price="1599" data-name="Patchwork Quilt">
+                    <div class="product-image">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Patchwork Quilt</h3>
+                        <p>Colorful patchwork quilt with traditional designs</p>
+                        <div class="product-price">₹1,599</div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="quilts" data-price="1799" data-name="King Size Quilt">
+                    <div class="product-image">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>King Size Quilt</h3>
+                        <p>Premium king size quilt with elegant embroidery</p>
+                        <div class="product-price">₹1,799</div>
+                    </div>
+                </div>
+
+                <!-- Cushions & Pillows -->
+                <div class="product-card" data-category="cushions" data-price="299" data-name="Embroidered Cushion Cover">
+                    <div class="product-image">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Embroidered Cushion Cover</h3>
+                        <p>Elegant cushion cover with beautiful embroidery work</p>
+                        <div class="product-price">₹299</div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="cushions" data-price="399" data-name="Decorative Pillow Set">
+                    <div class="product-image">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Decorative Pillow Set</h3>
+                        <p>Set of 2 decorative pillow covers with matching designs</p>
+                        <div class="product-price">₹399</div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="cushions" data-price="349" data-name="Velvet Cushion Cover">
+                    <div class="product-image">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Velvet Cushion Cover</h3>
+                        <p>Luxurious velvet cushion cover with golden threads</p>
+                        <div class="product-price">₹349</div>
+                    </div>
+                </div>
+
+                <!-- Pouches -->
+                <div class="product-card" data-category="pouches" data-price="199" data-name="Small Cosmetic Pouch">
                     <div class="product-image">
                         <i class="fas fa-shopping-bag"></i>
                     </div>
                     <div class="product-info">
-                        <h3>Handwoven Tote Bag</h3>
-                        <p>Eco-friendly tote bag with colorful handwoven patterns</p>
-                        <div class="product-price">₹599</div>
+                        <h3>Small Cosmetic Pouch</h3>
+                        <p>Stylish pouch perfect for cosmetics and small items</p>
+                        <div class="product-price">₹199</div>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-category="pouches" data-price="299" data-name="Travel Pouch Set">
                     <div class="product-image">
-                        <i class="fas fa-ring"></i>
+                        <i class="fas fa-shopping-bag"></i>
                     </div>
                     <div class="product-info">
-                        <h3>Silver Wire Bracelet</h3>
-                        <p>Delicate silver wire bracelet with charm details</p>
-                        <div class="product-price">₹449</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Decorative Wall Hanging</h3>
-                        <p>Handcrafted wall hanging with macramé and bead details</p>
-                        <div class="product-price">₹799</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-hat-cowboy"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Crocheted Hat</h3>
-                        <p>Stylish crocheted hat perfect for any season</p>
-                        <div class="product-price">₹349</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Dream Catcher</h3>
-                        <p>Beautiful dream catcher with feathers and beads</p>
+                        <h3>Travel Pouch Set</h3>
+                        <p>Set of 3 pouches in different sizes for travel</p>
                         <div class="product-price">₹299</div>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-category="pouches" data-price="249" data-name="Zipper Pouch - Handwoven">
                     <div class="product-image">
-                        <i class="fas fa-gift"></i>
+                        <i class="fas fa-shopping-bag"></i>
                     </div>
                     <div class="product-info">
-                        <h3>Custom Gift Box</h3>
-                        <p>Personalized gift box with handcrafted items of your choice</p>
-                        <div class="product-price">₹999</div>
+                        <h3>Zipper Pouch - Handwoven</h3>
+                        <p>Handwoven pouch with secure zipper closure</p>
+                        <div class="product-price">₹249</div>
                     </div>
                 </div>
-                <div class="product-card">
+
+                <!-- Table Runners -->
+                <div class="product-card" data-category="table-runners" data-price="599" data-name="Festive Table Runner">
                     <div class="product-image">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-table"></i>
                     </div>
                     <div class="product-info">
-                        <h3>Decorative Candles</h3>
-                        <p>Hand-poured scented candles with decorative holders</p>
-                        <div class="product-price">₹399</div>
+                        <h3>Festive Table Runner</h3>
+                        <p>Beautiful table runner perfect for celebrations</p>
+                        <div class="product-price">₹599</div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="table-runners" data-price="699" data-name="Embroidered Table Runner">
+                    <div class="product-image">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Embroidered Table Runner</h3>
+                        <p>Elegant table runner with intricate embroidery</p>
+                        <div class="product-price">₹699</div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="table-runners" data-price="549" data-name="Cotton Table Runner">
+                    <div class="product-image">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cotton Table Runner</h3>
+                        <p>Classic cotton table runner with border design</p>
+                        <div class="product-price">₹549</div>
+                    </div>
+                </div>
+
+                <!-- Buntings -->
+                <div class="product-card" data-category="buntings" data-price="149" data-name="Colorful Triangle Bunting">
+                    <div class="product-image">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Colorful Triangle Bunting</h3>
+                        <p>Vibrant triangle bunting perfect for parties</p>
+                        <div class="product-price">₹149</div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="buntings" data-price="199" data-name="Birthday Bunting Set">
+                    <div class="product-image">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Birthday Bunting Set</h3>
+                        <p>Special birthday bunting with letters and decorations</p>
+                        <div class="product-price">₹199</div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="buntings" data-price="179" data-name="Fabric Flag Bunting">
+                    <div class="product-image">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fabric Flag Bunting</h3>
+                        <p>Handcrafted fabric flag bunting for decorations</p>
+                        <div class="product-price">₹179</div>
+                    </div>
+                </div>
+                <!-- Tote Bags -->
+                <div class="product-card" data-category="tote-bags" data-price="499" data-name="Canvas Tote Bag - Minimal">
+                    <div class="product-image">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Canvas Tote Bag - Minimal</h3>
+                        <p>Durable everyday tote with clean minimalist design</p>
+                        <div class="product-price">₹499</div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="tote-bags" data-price="599" data-name="Floral Printed Tote Bag">
+                    <div class="product-image">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Floral Printed Tote Bag</h3>
+                        <p>Bright and colorful floral prints on eco cotton canvas</p>
+                        <div class="product-price">₹599</div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="tote-bags" data-price="649" data-name="Handcrafted Jute Tote Bag">
+                    <div class="product-image">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Handcrafted Jute Tote Bag</h3>
+                        <p>Rustic jute tote with handmade embroidered patterns</p>
+                        <div class="product-price">₹649</div>
                     </div>
                 </div>
             </div>
@@ -736,7 +930,7 @@
                 <div class="contact-card">
                     <i class="fas fa-envelope"></i>
                     <h3>Email</h3>
-                    <p>nankicreations@gmail.com</p>
+                    <p>nanki.creations@gmail.com</p>
                 </div>
                 <div class="contact-card">
                     <i class="fas fa-phone"></i>
@@ -769,8 +963,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 NANKI CREATIONS. All rights reserved.</p>
+        <footer class="footer">
+        <p>&copy; 2025 NANAKI CREATIONS. All rights reserved.</p>
         <div class="social-links">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -780,6 +974,42 @@
     </footer>
 
     <script>
+        function sortProducts(type) {
+            const grid = document.getElementById('product-grid');
+            const products = Array.from(grid.getElementsByClassName('product-card'));
+
+            let sorted;
+
+            if (type === 'price-low') {
+                sorted = products.sort((a, b) => +a.dataset.price - +b.dataset.price);
+            } else if (type === 'price-high') {
+                sorted = products.sort((a, b) => +b.dataset.price - +a.dataset.price);
+            } else if (type === 'name') {
+                sorted = products.sort((a, b) =>
+                    a.dataset.name.localeCompare(b.dataset.name)
+                );
+            }
+
+            // Re-append sorted elements to the grid
+            sorted.forEach(card => grid.appendChild(card));
+        }
+
+        function filterProducts(category, event) {
+            const cards = document.querySelectorAll('.product-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            // Update active filter button
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            if (event) event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
         // Page Navigation
         function showPage(pageId) {
             // Hide all pages
